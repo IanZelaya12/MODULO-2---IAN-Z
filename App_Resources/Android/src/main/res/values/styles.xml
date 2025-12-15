@@ -1,0 +1,6 @@
+<style name="AppThemeBase" parent="Theme.AppCompat.Light.NoActionBar">
+    </style>
+
+<style name="LaunchScreenTheme" parent="AppThemeBase">
+    <item name="android:windowBackground">@drawable/splash_logo</item> 
+    </style>
