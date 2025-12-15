@@ -1,0 +1,24 @@
+/* 9. Animación de Rotación en el ícono de favorito */
+@keyframes rotate-favorite {
+    from {
+        transform: rotate(0deg);
+        color: #999; /* Gris */
+    }
+    to {
+        transform: rotate(360deg);
+        color: gold; /* Dorado */
+    }
+}
+
+.favorite-icon {
+    font-size: 24;
+    color: #999;
+}
+
+.is-favorite {
+    /* Estado favorito: aplica la animación */
+    animation-name: rotate-favorite;
+    animation-duration: 0.8s;
+    animation-iteration-count: 1;
+    color: gold; /* Color final */
+}
