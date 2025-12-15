@@ -1,0 +1,37 @@
+<StackLayout class="page">
+    <ActionBar title="M4 - Búsqueda y Listado" class="action-bar"></ActionBar>
+
+    <StackLayout orientation="horizontal" class="p-15">
+        <TextField hint="Buscar artículos..." [(ngModel)]="searchQuery" class="input input-full"></TextField>
+        <Button text="Buscar" (tap)="search()" class="btn btn-primary"></Button>
+    </StackLayout>
+
+    <Label [text]="'Usuario: ' + userName" class="p-15 h2"></Label>
+
+    <PullToRefresh (refresh)="refreshList($event)">
+        <ListView [items]="articles" class="list-group">
+            <ng-template let-item="item" let-i="index">
+                <FlexboxLayout flexDirection="row" class="list-group-item" (tap)="goToDetails(item.id)">
+                    
+                    <StackLayout flexGrow="1" class="p-10">
+                        <Label [text]="item.title" class="list-group-item-heading h2"></Label>
+                        <Label [text]="'Autor: ' + item.author" class="list-group-item-text"></Label>
+                    </StackLayout>
+                    
+                    <StackLayout (longPress)="showActionDialog(item)" class="p-10 m-l-auto">
+                        <Label text="&#xf005;" class="fa favorite-icon" [class.is-favorite]="isFavorite(item.id)"></Label>
+                    </StackLayout>
+                    
+                </FlexboxLayout>
+            </ng-template>
+        </ListView>
+    </PullToRefresh>
+
+    <StackLayout class="p-15 m-t-10 bg-info">
+        <Label text="Elementos Marcados para Leer Ahora:" class="h3 font-weight-bold"></Label>
+        <StackLayout *ngFor="let id of (readLaterIds$ | async)">
+            <Label [text]="'Artículo ID: ' + id" class="list-group-item-text"></Label>
+        </StackLayout>
+    </StackLayout>
+    
+</StackLayout>
